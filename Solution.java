@@ -10,7 +10,6 @@ public class Solution{
 	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 	public static void main(String[] args) throws IOException {
 		StringBuilder sb = new StringBuilder();
-		String str;
 		StringTokenizer token;
 
 		int TC = Integer.parseInt(br.readLine());
