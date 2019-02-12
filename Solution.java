@@ -9,16 +9,14 @@ public class Solution{
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 	public static void main(String[] args) throws IOException {
-		StringBuilder sb = new StringBuilder();
 		StringTokenizer token;
-
 		int TC = Integer.parseInt(br.readLine());
 		for (int test_case = 1; test_case <= TC; test_case++) {
-
+			StringBuilder sb = new StringBuilder();
 			sb.append("#").append(test_case).append(" ").append("\n");
+			bw.write(sb.toString());
 		}
 
-		bw.write(sb.toString());
 		bw.flush();
 		bw.close();
 	}
