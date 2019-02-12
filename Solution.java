@@ -14,7 +14,7 @@ public class Solution{
 		StringTokenizer token;
 
 		int TC = Integer.parseInt(br.readLine());
-		for (int test_case = 1; test_case < TC; test_case++) {
+		for (int test_case = 1; test_case <= TC; test_case++) {
 
 			sb.append("#").append(test_case).append(" ").append("\n");
 		}
