@@ -17,7 +17,7 @@ public class Solution4530{
 		for(int i=2;i<arr.length;i++) {
 			arr[i]=new Pair((long)Math.pow(10, i), (arr[i-1].bf+arr[i-1].ff)*9);
 		}
-//		for(int i=0;i<arr.length;i++) {
+//		for(int i=0;i<arr.length;i++) {	//4가 들어가는 숫자의 수 배열 출력
 //			System.out.println(i+"="+arr[i].ff+" "+arr[i].bf);
 //		}
 		StringTokenizer token;
@@ -29,11 +29,12 @@ public class Solution4530{
 			long num2=Long.parseLong(token.nextToken());
 			String str2=String.valueOf(Math.abs(num2));
 			long num=0;
-			if(num1<0&&num2<0) {
+			if(num1<0&&num2<0) {	//두 수가 모두 0보다 작으면 절대값으로 변경
 				num1=Math.abs(num1);
 				num2=Math.abs(num2);
 			}
-			if((num1>0&&num2>0)) {
+			if((num1>0&&num2>0)) {	//두 수가 모두 0보다 큰 경우
+			//0부터 num2까지의 이동거리 - 0부터 num1까지의 이동거리
 				for(int j=0;j<str1.length();j++) {
 					for(int i=0;i<str1.charAt(j)-'0';i++) {
 						if(i==4) {
@@ -57,6 +58,7 @@ public class Solution4530{
 				num=Math.abs(num2-num1);
 			}
 			else if((num1<0&&num2>0)||(num1>0&&num2<0)){
+				//0부터 num2까지의 이동거리 - 0부터 num1까지의 이동거리
 				num=Math.abs(num1)+num2;
 				for(int j=0;j<str1.length();j++) {
 					for(int i=0;i<str1.charAt(j)-'0';i++) {
@@ -80,7 +82,7 @@ public class Solution4530{
 				}
 			}
 			long ans=num;
-			if((num1<0&&num2>0)||(num1>0&&num2<0))
+			if((num1<0&&num2>0)||(num1>0&&num2<0))	//하나가 양수고 하나가 양수라면 0을 빼줘야 함
 				ans--;
 			StringBuilder sb = new StringBuilder();
 			sb.append("#").append(test_case).append(" ").append(ans).append("\n");
