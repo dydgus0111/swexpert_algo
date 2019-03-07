@@ -21,13 +21,14 @@ public class Solution7088{
 			for(int i=1;i<=N;i++) {
 				token=new StringTokenizer(br.readLine());
 				int n=Integer.parseInt(token.nextToken());
-				arr[i][n-1]++;
+				arr[i][n-1]++;	//i번째 소의 품종에 카운트를 하나씩 올려줌
 			}
 			for(int i=1;i<=N;i++) {
 				for(int j=0;j<3;j++) {
-					arr[i][j]+=arr[i-1][j];
+					arr[i][j]+=arr[i-1][j];	//소의 수를 계속 누적합 시켜나감
 				}
 			}
+			
 			StringBuilder sb = new StringBuilder();
 			sb.append("#").append(test_case).append(" ");
 			System.out.println(sb.toString());
@@ -37,7 +38,7 @@ public class Solution7088{
 				int start=Integer.parseInt(token.nextToken());
 				int end=Integer.parseInt(token.nextToken());
 				for(int j=0;j<3;j++) {
-					ans.append(arr[end][j]-arr[start-1][j]).append(" ");
+					ans.append(arr[end][j]-arr[start-1][j]).append(" ");	//end번째까지의 누적합-(start-1)까지의 누적합
 				}
 				ans.append("\n");
 			}
