@@ -64,8 +64,8 @@ public class Solution5643{
 				if(!check[i]&&map[next][i]==1) {
 					check[i]=true;
 					queue.add(i);
-					list.get(start).shortcnt++;
-					list.get(i).tallcnt++;
+					list.get(start).tallcnt++;
+					list.get(i).shortcnt++;
 				}
 			}
 		}
