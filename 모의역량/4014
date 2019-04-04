@@ -1,0 +1,173 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+//-경사로는 1차이 나야 놓을 수 있음
+//-이미 경사로가 놔진 곳은 다른 경사로 놓을 수 없음
+//-1차이 나는게 X만큼 연속으로 있어야함
+public class Solution4014{
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	static int map[][];
+	static int N;
+	static int X;
+	public static void main(String[] args) throws IOException {
+		StringTokenizer token;
+		int TC = Integer.parseInt(br.readLine());
+		for (int test_case = 1; test_case <= TC; test_case++) {
+			token=new StringTokenizer(br.readLine());
+			N=Integer.parseInt(token.nextToken());
+			X=Integer.parseInt(token.nextToken());
+			map=new int[N][N];
+			ans=0;
+			for(int i=0;i<N;i++) {
+				token=new StringTokenizer(br.readLine());
+				for(int j=0;j<N;j++) {
+					map[i][j]=Integer.parseInt(token.nextToken());
+				}
+			}
+			colRoad();
+			rowRoad();
+			StringBuilder sb = new StringBuilder();
+			sb.append("#").append(test_case).append(" ").append(ans).append("\n");
+			bw.write(sb.toString());
+		}
+		bw.flush();
+		bw.close();
+	}
+	static int ans;
+	static void colRoad() {
+		//지나가면서 사용여부체크
+		for(int i=0;i<N;i++) {
+			boolean[] used=new boolean[N];
+			int cur=map[i][0];
+			int curcnt=1;
+			boolean flag=true;
+			for(int j=1;j<N;j++) {
+				if(cur==map[i][j]) {
+					//같은 높이
+					curcnt++;
+				}
+				else if(cur+1==map[i][j]) {
+					//다음이 cur보다 1큰 경우
+					if(curcnt>=X) {
+						//경사로 놓을 공간이 충분
+						for(int k=j-1;k>=j-X;k--) {
+							if(!used[k])
+								used[k]=true;
+							else {
+								flag=false;
+								break;
+							}
+						}
+						cur=map[i][j];
+						curcnt=1;
+					}
+					else {
+						//경사로 놓을 공간이 없음
+						flag=false;
+					}
+				}
+				else if(cur-1==map[i][j]) {
+					//다음이 cur보다 1 작은 경우
+					int next=map[i][j];
+					int tmpcnt=0;
+					for(int k=0;k<X;k++) {
+						if(j+k>=N) {
+							flag=false;
+							break;
+						}
+						if(map[i][j+k]==next) {
+							tmpcnt++;
+						}
+					}
+					if(tmpcnt==X) {
+						for(int k=0;k<X;k++) {
+							used[j+k]=true;
+						}
+						j+=X-1;
+						cur=map[i][j];
+					}
+					else
+						flag=false;
+					
+				}
+				else if(Math.abs(cur-map[i][j])>1) {
+					//다음과 차이가 1이상인 경우
+					flag=false;
+				}
+			}
+			if(flag)
+				ans++;
+		}
+	}
+	static void rowRoad() {
+		//지나가면서 사용여부체크
+		for(int i=0;i<N;i++) {
+			boolean[] used=new boolean[N];
+			int cur=map[0][i];
+			int curcnt=1;
+			boolean flag=true;
+			for(int j=1;j<N;j++) {
+				if(cur==map[j][i]) {
+					//같은 높이
+					curcnt++;
+				}
+				else if(cur+1==map[j][i]) {
+					//다음이 cur보다 1큰 경우
+					if(curcnt>=X) {
+						//경사로 놓을 공간이 충분
+						for(int k=j-1;k>=j-X;k--) {
+							if(!used[k])
+								used[k]=true;
+							else {
+								flag=false;
+								break;
+							}
+						}
+						cur=map[j][i];
+						curcnt=1;
+					}
+					else {
+						//경사로 놓을 공간이 없음
+						flag=false;
+					}
+				}
+				else if(cur-1==map[j][i]) {
+					//다음이 cur보다 1 작은 경우
+					int next=map[j][i];
+					int tmpcnt=0;
+					for(int k=0;k<X;k++) {
+						if(j+k>=N) {
+							flag=false;
+							break;
+						}
+						if(map[j+k][i]==next) {
+							tmpcnt++;
+						}
+					}
+					if(tmpcnt==X) {
+						for(int k=0;k<X;k++) {
+							used[j+k]=true;
+						}
+						j+=X-1;
+						cur=map[j][i];
+					}
+					else
+						flag=false;
+					
+				}
+				else if(Math.abs(cur-map[j][i])>1) {
+					//다음과 차이가 1이상인 경우
+					flag=false;
+				}
+			}
+			if(flag)
+				ans++;
+		}
+	}
+	
+	
+}
