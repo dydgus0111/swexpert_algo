@@ -9,7 +9,7 @@ public class Solution{
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 	public static void main(String[] args) throws IOException {
-		StringTokenizer token;
+		StringTokenizer st;
 		int TC = Integer.parseInt(br.readLine());
 		for (int test_case = 1; test_case <= TC; test_case++) {
 			StringBuilder sb = new StringBuilder();
